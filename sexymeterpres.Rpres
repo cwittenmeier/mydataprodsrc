@@ -1,0 +1,42 @@
+Sexy-Meter
+========================================================
+author:Constantin Wittenmeier 
+date:26. December, 2016
+autosize: true
+
+Purpose
+========================================================
+ The purpose of the Sexy-Meter is to calculate 
+ your Sexiness-Quotient to estimate, how sexy you are ! 
+
+
+How it works
+========================================================
+- Input by using the sliders of an estimation of your qualities
+"intelligence", "body", "humor" and "money"
+- We assume, that all these qualities are normal distributed in the manhood 
+with mean 100 and standarddeviation of 15.
+- We assume that the qualities are independent from each other
+- As an result the application outputs your Sexiness-Quotient
+- All qualities are weighted equally 
+- The Sexiness-Quotient is also normal-distributed with mean 100 and 
+Standarddeviation 15
+
+
+Behind the scenes 1
+========================================================
+- Lets assume you estimate your qualities as follows:
+intelligence=115, body=80, humor=120 and money=100
+- Then your Sexiness-Quotient is calculated behind the scenes as follows
+on the next slide
+
+Behind the scenes 2
+========================================================
+```{r, echo=TRUE}
+mysexquot<- function(int, body, humor, money){
+  sumvar=0.25^2*15^2+ 0.25^2*15^2 +0.25^2*15^2+0.25^2*15^2
+  summe<-int*0.25 + body*0.25 + humor*0.25 + money*0.25
+  result<-100+(summe-100)*15/sqrt(sumvar)        
+}
+print(mysexquot(115,80,120,100))
+```
